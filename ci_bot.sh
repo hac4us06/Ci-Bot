@@ -126,7 +126,7 @@ pin_message() {
 
 upload_file() {
     RESPONSE=$(curl -T "$1" -u :"$CONFIG_PDUP_API" https://pixeldrain.com/api/file/)
-    HASH=$(echo "$RESPONSE" | grep -Po '(?<="id":")[^"]*')
+    HASH=$(echo "$RESPONSE" | jq -r ".id")
 
     echo "https://pixeldrain.com/u/$HASH"
 }
